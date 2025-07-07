@@ -1,19 +1,12 @@
-<script setup>
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-
-function goToPost() {
-  router.push({
-    path: "/post/123",
-    query: { writer: "홍길동" }
-  });
-}
-</script>
-
 <template>
   <div>
-    <h2>홈 페이지</h2>
-    <button @click="goToPost">게시글 123 보기</button>
+    <h2>홈</h2>
+    <UserForm />
+    <UserInfo />
+    <router-link to="/about">소개 페이지로 이동</router-link>
   </div>
 </template>
+<script setup>
+import UserForm from "@/components/UserForm.vue";
+import UserInfo from "@/components/UserInfo.vue";
+</script>
