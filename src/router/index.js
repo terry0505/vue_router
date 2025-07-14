@@ -6,6 +6,7 @@ import PostView from "@/views/PostView.vue";
 import LoginView from "@/views/LoginView.vue";
 import PostListView from "@/views/PostListView.vue";
 import PostCreateView from "@/views/PostCreateView.vue";
+import PostDetailView from "@/views/PostDetailView.vue";
 
 const routes = [
   { path: "/", name: "Home", component: HomeView },
@@ -14,7 +15,8 @@ const routes = [
   { path: "/post/:id", name: "Post", component: PostView },
   { path: "/login", component: LoginView },
   { path: "/posts", component: PostListView },
-  { path: "/posts/new", component: PostCreateView }
+  { path: "/posts/new", component: PostCreateView },
+  { path: "/posts/:id", component: PostDetailView }
 ];
 
 const router = createRouter({
