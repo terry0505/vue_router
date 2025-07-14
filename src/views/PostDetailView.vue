@@ -1,7 +1,13 @@
 <template>
   <div class="post-detail" v-if="post">
     <h2>{{ post.title }}</h2>
-    <p>{{ post.content }}</p>
+
+    <div class="post-meta">
+      <span>✍️ {{ post.author }}</span>
+      <span>📅 {{ post.date }}</span>
+      <span>💬 댓글 {{ post.comments }}개</span>
+    </div>
+    <p class="post-content">{{ post.content }}</p>
     <RouterLink to="/posts">← 목록으로 돌아가기</RouterLink>
   </div>
 
@@ -36,10 +42,19 @@ const post = computed(() => store.posts.find((p) => p.id === postId));
   h2 {
     margin-bottom: 12px;
   }
-
-  p {
+  .post-meta {
+    font-size: 14px;
+    color: #777;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+  }
+  .post-content {
     line-height: 1.6;
     color: #444;
+    margin-bottom: 32px;
   }
 
   a {
