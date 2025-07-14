@@ -4,13 +4,17 @@ import AboutView from "@/views/AboutView.vue";
 import UserView from "@/views/UserView.vue";
 import PostView from "@/views/PostView.vue";
 import LoginView from "@/views/LoginView.vue";
+import PostListView from "@/views/PostListView.vue";
+import PostCreateView from "@/views/PostCreateView.vue";
 
 const routes = [
   { path: "/", name: "Home", component: HomeView },
   { path: "/about", name: "About", component: AboutView },
   { path: "/user/:name", name: "User", component: UserView },
   { path: "/post/:id", name: "Post", component: PostView },
-  { path: "/login", component: LoginView }
+  { path: "/login", component: LoginView },
+  { path: "/posts", component: PostListView },
+  { path: "/posts/new", component: PostCreateView }
 ];
 
 const router = createRouter({
