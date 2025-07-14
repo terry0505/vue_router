@@ -11,18 +11,23 @@
 import { ref } from "vue";
 import { usePostStore } from "@/stores/post";
 import { useRouter } from "vue-router";
+import { useUserStore } from "@/stores/user";
 
 const title = ref("");
 const content = ref("");
 const store = usePostStore();
 const router = useRouter();
+const userStore = useUserStore();
 
 function savePost() {
   if (title.value.trim() && content.value.trim()) {
     store.addPost({
       id: Date.now(),
       title: title.value,
-      content: content.value
+      content: content.value,
+      author: userStore.username || "익명",
+      createdAt: new Date().toLocaleDateString(),
+      comments: []
     });
     router.push("/posts");
   }

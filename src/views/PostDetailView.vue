@@ -2,18 +2,20 @@
   <div class="post-detail" v-if="post">
     <h2>{{ post.title }}</h2>
 
-    <div class="post-meta">
-      <span>✍️ {{ post.author }}</span>
-      <span>📅 {{ post.date }}</span>
-      <span>💬 댓글 {{ post.comments }}개</span>
+    <div class="meta">
+      ✍️ {{ post.author }} | 🕒 {{ post.createdAt }} | 💬 댓글
+      {{ post.comments?.length ?? 0 }}개
     </div>
     <p class="post-content">{{ post.content }}</p>
     <RouterLink to="/posts">← 목록으로 돌아가기</RouterLink>
   </div>
 
   <div v-else class="not-found">
-    <h3>해당 게시글을 찾을 수 없습니다 😢</h3>
-    <RouterLink to="/posts">← 게시글 목록</RouterLink>
+    <h3>😢 게시글을 찾을 수 없습니다</h3>
+    <p>주소가 잘못되었거나 삭제된 글일 수 있어요.</p>
+    <RouterLink to="/posts">
+      <button>게시글 목록으로 가기</button>
+    </RouterLink>
   </div>
 </template>
 
@@ -32,40 +34,54 @@ const post = computed(() => store.posts.find((p) => p.id === postId));
 <style scoped lang="scss">
 .post-detail,
 .not-found {
-  max-width: 600px;
+  max-width: 640px;
   margin: 60px auto;
   padding: 24px;
-  background: #fff;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 10px;
+  background: #fff;
+}
 
-  h2 {
-    margin-bottom: 12px;
-  }
-  .post-meta {
-    font-size: 14px;
-    color: #777;
-    display: flex;
-    gap: 16px;
-    margin-bottom: 24px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 12px;
-  }
-  .post-content {
-    line-height: 1.6;
-    color: #444;
-    margin-bottom: 32px;
+h2 {
+  margin-bottom: 12px;
+}
+
+.meta {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.content {
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: #42b983;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.not-found {
+  text-align: center;
+
+  button {
+    margin-top: 16px;
+    padding: 10px 16px;
+    background-color: #ff7676;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
   }
 
-  a {
-    display: inline-block;
-    margin-top: 20px;
-    color: #42b983;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
+  button:hover {
+    background-color: #e05555;
   }
 }
 </style>
